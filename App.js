@@ -56,14 +56,14 @@ function adjustZoom(event, zoomFactor) {
     const canvas = canvasRef.current;
     const rect = canvas.getBoundingClientRect(); 
 
-    // ✅ Get correct mouse position relative to canvas
+    // Get correct mouse position relative to canvas
     const mouseX = event.clientX - rect.left;
     const mouseY = event.clientY - rect.top;
 
     setZoom((prevZoom) => {
         const newZoom = Math.max(0.5, Math.min(prevZoom * zoomFactor, 5));
 
-        // ✅ Fix: Correct offset calculation to avoid extreme negatives
+        //  Fix: Correct offset calculation to avoid extreme negatives
         const scaleChange = newZoom / prevZoom;
         setOffsetX((prevOffsetX) => (mouseX - prevOffsetX) * (1 - scaleChange) + prevOffsetX);
         setOffsetY((prevOffsetY) => (mouseY - prevOffsetY) * (1 - scaleChange) + prevOffsetY);
@@ -111,7 +111,7 @@ for (let i = 0; i < hillSpecs.length; i++) {
       ctx.fill();
     });
     
-ctx.restore(); // ✅ Reset transformations after drawing
+ctx.restore(); //  Reset transformations after drawing
 
     // Draw Start (Two Circles, 1 Empty Space Apart)
     if (start) {
